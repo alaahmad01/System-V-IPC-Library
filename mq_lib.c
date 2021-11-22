@@ -33,7 +33,7 @@ void send_queue (int mid, void * msg, size_t som) {
 
     if (msgsnd(mid, msg, som, 0) == -1) {
         perror("send_queue msgsnd");
-        exit(-3);
+        exit(-1);
     }
 
 }
