@@ -1,10 +1,10 @@
 # ipcs-library
 
 Compile with "make"
-$make
+> $make
 
 Run with "./main"
-$./main
+> $./main
 
 Clean with "make clean"
-$make clean
+> $make clean
