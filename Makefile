@@ -8,3 +8,4 @@ all: mq_lib.o main.o
 
 clean:
 	rm -f main.o mq_lib.o main
+	ipcrm --all=msg
