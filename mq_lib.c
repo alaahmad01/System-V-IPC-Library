@@ -10,7 +10,7 @@ int open_queue(char path[], int seed, int flag) {
         exit(-1);
     }
 
-    if ((mid = msgget(key, flag)) == -1) { // this mid should be sent to parent process to be sent to passengers
+    if ((mid = msgget(key, flag)) == -1) {
         perror("open_queue msgget");
         exit(-2);
     }
@@ -32,7 +32,7 @@ void * receive_queue (int mid, void * msg, size_t som, int attr) {
 void send_queue (int mid, void * msg, size_t som) {
 
     if (msgsnd(mid, &msg, som, 0) == -1) {
-        perror("Send passenger to officer by msq");
+        perror("send_queue msgsnd");
         exit(-3);
     }
 
