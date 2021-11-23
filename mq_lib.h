@@ -7,11 +7,6 @@
 #include <sys/msg.h>
 #include <unistd.h>
 
-typedef struct {
-    long mtype;
-    int mtext[2];
-}buffer;
-
 int open_queue (char[], int, int);
 void * receive_queue (int mid, void * msg, size_t som, long attr);
 void send_queue (int mid, void * msg, size_t som);

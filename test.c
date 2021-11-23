@@ -1,8 +1,10 @@
 
 
 #include "mq_lib.h"
+#include "shmem_lib.h"
 
-#define TYPE 1
+#define SEED 'A'
+#define SIZE 1024
 
 int main (void) {
 
@@ -13,25 +15,22 @@ int main (void) {
         case 0:
             printf("hello child\n");
             fflush(stdout);
-            buffer buffer2;
-            int mid = open_queue(".",1,IPC_CREAT|0666);
-            buffer2 = *(buffer *) receive_queue(mid,(void *)&buffer2, sizeof(buffer2.mtext),TYPE);
-            printf("received buffer2 %d %d\n",buffer2.mtext[0],buffer2.mtext[1]);
+
+            int shm = open_shmem(SEED, SIZE, 0);
+            int *shmp = (int *) attach_shmem(shm);
+
+            sleep(1);
+            printf("Received %d %d",shmp[0],shmp[1]);
             fflush(stdout);
             break;
         default:
             printf("hello parent\n");
             fflush(stdout);
-            int mid2;
-            buffer buffer1;
-            buffer1.mtype = TYPE;
-            buffer1.mtext[0] = 0;
-            buffer1.mtext[1] = 1;
-            mid2 = open_queue(".", 1, IPC_CREAT | 0666);
-            send_queue(mid2,(void *)&buffer1, sizeof(buffer1.mtext));
-            printf("sending buffer1\n");
-            fflush(stdout);
-            sleep(1);
+            int shmid = open_shmem(SEED, SIZE, IPC_CREAT | 0666);
+            int * shmptr = (int *) attach_shmem(shmid);
+            shmptr[0] = 0;
+            shmptr [1] = 1;
+            sleep(2);
     }
 
 

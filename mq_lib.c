@@ -1,6 +1,9 @@
 
 #include "mq_lib.h"
 
+/*
+ * Opens the public message queue
+ * */
 int open_queue(char path[], int seed, int flag) {
 
     int key,mid;
@@ -19,6 +22,9 @@ int open_queue(char path[], int seed, int flag) {
 
 }
 
+/*
+ * Receives from the public message queue
+ * */
 void * receive_queue (int mid, void * msg, size_t som, long attr) {
 
     if (msgrcv(mid, msg, som, attr, 0) == -1) {
@@ -29,6 +35,9 @@ void * receive_queue (int mid, void * msg, size_t som, long attr) {
     return msg;
 }
 
+/*
+ * Sends to the public message queue
+ * */
 void send_queue (int mid, void * msg, size_t som) {
 
     if (msgsnd(mid, msg, som, 0) == -1) {
