@@ -41,6 +41,9 @@ int open_sem(int seed, int nsems, int flag, unsigned short arr[]) {
     return semid;
 }
 
+/*
+ * Acquires the semaphore at index
+ * */
 void acquire_sem(int semid, int index) {
     acquire.sem_num = index;
     if (semop(semid, &acquire, 1) == -1) {
@@ -49,6 +52,9 @@ void acquire_sem(int semid, int index) {
     }
 }
 
+/*
+ * Releases the semaphore at index
+ * */
 void release_sem(int semid, int index) {
     release.sem_num = index;
     if (semop(semid, &release, 1) == -1) {

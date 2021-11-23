@@ -1,11 +1,6 @@
 
 
-#include "mq_lib.h"
-#include "shmem_lib.h"
-#include "sem_lib.h"
-
-#define SEED 'A'
-#define SIZE 1024
+#include "local.h"
 
 int main (void) {
 
