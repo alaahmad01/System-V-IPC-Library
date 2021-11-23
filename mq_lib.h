@@ -1,5 +1,5 @@
-#ifndef __UTILS_H_
-#define __UTILS_H_
+#ifndef __MQ_LIB_H
+#define __MQ_LIB_H
 
 #include <stdio.h>
 #include <stdlib.h>
